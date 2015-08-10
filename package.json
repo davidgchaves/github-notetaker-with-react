@@ -1,0 +1,12 @@
+{
+  "name": "github-notetaker-with-react",
+  "version": "0.0.1",
+  "description": "Trying out React with 2015 tooling",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidgchaves/github-notetaker-with-react.git"
+  },
+  "author": "David G. Chaves <davidgchaves@gmail.com>",
+  "main": "index.js",
+  "license": "ISC"
+}
