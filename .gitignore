@@ -23,3 +23,6 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
+
+# Javascript output file (should be generated each time)
+public/bundle.js
