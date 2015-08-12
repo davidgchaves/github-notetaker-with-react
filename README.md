@@ -40,4 +40,4 @@ or explicitly use the locally installed version:
 $ ./node_modules/webpack/bin/webpack.js
 ```
 
-but IMHO, aliasing the webpack command is the best choice.
+but IMHO, aliasing the `webpack` command is the best choice.
