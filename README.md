@@ -7,6 +7,18 @@ Github NoteTaker with React
 $ npm install
 ```
 
+### Building with `webpack`
+
+```
+$ webpack
+```
+
+or in case 'watching' the files is your cup of tea
+
+```
+$ webpack -w
+```
+
 ### Aliasing `webpack` command
 In order to easily use the locally installed (node_modules/...) `webpack`
 command, add the following line to your `~/.zshrc`:
