@@ -16,7 +16,7 @@ var Notes = React.createClass({
         <AddNote username={this.props.username} addNote={this.props.addNote} />
         <NotesList notes={this.props.notes} />
       </div>
-    );
+    )
   }
 });
 

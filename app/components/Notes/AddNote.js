@@ -18,7 +18,7 @@ var AddNote = React.createClass({
           <button className="btn btn-default" type="button" onClick={this.handleSubmit}> Submit </button>
         </span>
       </div>
-    );
+    )
   }
 });
 

@@ -12,7 +12,7 @@ var Repos = React.createClass({
         Username: {this.props.username}<br />
         Repos: {this.props.repos}
       </div>
-    );
+    )
   }
 });
 

@@ -9,7 +9,7 @@ var NotesList = React.createClass({
       <ul className="list-group">
         {notes}
       </ul>
-    );
+    )
   }
 });
 

@@ -12,7 +12,7 @@ var UserProfile = React.createClass({
         Username: {this.props.username}<br />
         Bio: {this.props.bio}
       </div>
-    );
+    )
   }
 });
 

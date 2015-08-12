@@ -20,9 +20,9 @@ var Profile = React.createClass({
     }
   },
   initFirebase: function () {
-    this.firebase = new Firebase('https://blazing-heat-9744.firebaseio.com/');
-    var childFirebase = this.firebase.child(this.getParams().username);
-    this.bindAsArray(childFirebase, 'notes');
+    this.firebaseRef = new Firebase('https://blazing-heat-9744.firebaseio.com');
+    var firebaseRefChild = this.firebaseRef.child(this.getParams().username);
+    this.bindAsArray(firebaseRefChild, 'notes');
   },
   componentDidMount: function () {
     this.initFirebase();
@@ -31,7 +31,7 @@ var Profile = React.createClass({
     this.unbind('notes');
   },
   handleAddNote: function (newNote) {
-    this.firebase.child(this.getParams().username).set(this.state.notes.concat([newNote]));
+    this.firebaseRef.child(this.getParams().username).set(this.state.notes.concat([newNote]));
   },
   render: function () {
     var username = this.getParams().username;
@@ -54,7 +54,7 @@ var Profile = React.createClass({
             addNote={this.handleAddNote} />
         </div>
       </div>
-    );
+    )
   }
 });
 
