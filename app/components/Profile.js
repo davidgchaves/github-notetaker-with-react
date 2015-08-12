@@ -14,7 +14,7 @@ var Profile = React.createClass({
   ],
   getInitialState: function () {
     return {
-      notes: ['dummy1', 'dummy2'],
+      notes: [],
       bio: { dummy: 'Solyaris' },
       repos: [1, 2]
     }
@@ -28,7 +28,7 @@ var Profile = React.createClass({
     this.initFirebase();
   },
   componentWillUnmount: function () {
-    this.unbound('notes');
+    this.unbind('notes');
   },
   render: function () {
     var username = this.getParams().username;
