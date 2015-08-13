@@ -1,15 +1,12 @@
 import React from 'react';
-//var ReactFireMixin = require('reactfire');
-//var Firebase = require('firebase');
+import Rebase from 're-base';
 
 import UserProfile from './Github/UserProfile';
 import Repos from './Github/Repos';
 import Notes from './Notes/Notes';
 import helpers from '../utils/helpers';
 
-//mixins: [
-//  ReactFireMixin
-//]
+var base = Rebase.createClass('https://blazing-heat-9744.firebaseio.com');
 
 class Profile extends React.Component {
   constructor (props) {
@@ -21,8 +18,11 @@ class Profile extends React.Component {
     };
   }
   initFirebase () {
-    //var firebaseRefChild = this.firebaseRef.child(this.router.getCurrentParams().username);
-    //this.bindAsArray(firebaseRefChild, 'notes');
+    this.refBase = base.bindToState(this.router.getCurrentParams().username, {
+      context: this,
+      asArray: true,
+      state: 'notes'
+    });
   }
   initGithubInfo () {
     helpers
@@ -38,15 +38,14 @@ class Profile extends React.Component {
     this.router = this.context.router;
   }
   componentDidMount () {
-    //this.firebaseRef = new Firebase('https://blazing-heat-9744.firebaseio.com');
     this.initFirebase();
     this.initGithubInfo();
   }
   componentWillUnmount () {
-    //this.unbind('notes');
+    base.removeBinding(this.refBase);
   }
   componentWillReceiveProps () {
-    //this.unbind('notes');
+    base.removeBinding(this.refBase);
     this.initFirebase();
     this.initGithubInfo();
   }
