@@ -50,7 +50,9 @@ class Profile extends React.Component {
     this.initGithubInfo();
   }
   handleAddNote (newNote) {
-    // this.firebaseRef.child(this.router.getCurrentParams().username).set(this.state.notes.concat([newNote]));
+    base.post(this.router.getCurrentParams().username, {
+      data: this.state.notes.concat([newNote])
+    });
   }
   render () {
     var username = this.router.getCurrentParams().username;
@@ -70,7 +72,7 @@ class Profile extends React.Component {
           <Notes
             username={username}
             notes={this.state.notes}
-            addNote={this.handleAddNote} />
+            addNote={this.handleAddNote.bind(this)} />
         </div>
       </div>
     )
