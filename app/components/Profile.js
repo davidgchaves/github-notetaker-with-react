@@ -1,57 +1,60 @@
-var React = require('react');
-var Router = require('react-router');
-var ReactFireMixin = require('reactfire');
-var Firebase = require('firebase');
+import React from 'react';
+//var ReactFireMixin = require('reactfire');
+//var Firebase = require('firebase');
 
-var UserProfile = require('./Github/UserProfile');
-var Repos = require('./Github/Repos');
-var Notes = require('./Notes/Notes');
-var helpers = require('../utils/helpers');
+import UserProfile from './Github/UserProfile';
+import Repos from './Github/Repos';
+import Notes from './Notes/Notes';
+import helpers from '../utils/helpers';
 
-var Profile = React.createClass({
-  mixins: [
-    Router.State,
-    ReactFireMixin
-  ],
-  getInitialState: function () {
-    return {
+//mixins: [
+//  ReactFireMixin
+//]
+
+class Profile extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
       notes: [],
       bio: {},
       repos: []
-    }
-  },
-  initFirebase: function () {
-    var firebaseRefChild = this.firebaseRef.child(this.getParams().username);
-    this.bindAsArray(firebaseRefChild, 'notes');
-  },
-  initGithubInfo: function () {
+    };
+  }
+  initFirebase () {
+    //var firebaseRefChild = this.firebaseRef.child(this.router.getCurrentParams().username);
+    //this.bindAsArray(firebaseRefChild, 'notes');
+  }
+  initGithubInfo () {
     helpers
-      .getGithubInfoFor(this.getParams().username)
-      .then(function (githubData) {
+      .getGithubInfoFor(this.router.getCurrentParams().username)
+      .then((githubData) => {
         this.setState({
           repos: githubData.repos,
           bio: githubData.bio
         });
-      }.bind(this));
-  },
-  componentDidMount: function () {
-    this.firebaseRef = new Firebase('https://blazing-heat-9744.firebaseio.com');
+      });
+  }
+  componentWillMount () {
+    this.router = this.context.router;
+  }
+  componentDidMount () {
+    //this.firebaseRef = new Firebase('https://blazing-heat-9744.firebaseio.com');
     this.initFirebase();
     this.initGithubInfo();
-  },
-  componentWillUnmount: function () {
-    this.unbind('notes');
-  },
-  componentWillReceiveProps: function () {
-    this.unbind('notes');
+  }
+  componentWillUnmount () {
+    //this.unbind('notes');
+  }
+  componentWillReceiveProps () {
+    //this.unbind('notes');
     this.initFirebase();
     this.initGithubInfo();
-  },
-  handleAddNote: function (newNote) {
-    this.firebaseRef.child(this.getParams().username).set(this.state.notes.concat([newNote]));
-  },
-  render: function () {
-    var username = this.getParams().username;
+  }
+  handleAddNote (newNote) {
+    // this.firebaseRef.child(this.router.getCurrentParams().username).set(this.state.notes.concat([newNote]));
+  }
+  render () {
+    var username = this.router.getCurrentParams().username;
     return (
       <div className="row">
         <div className="col-md-4">
@@ -73,6 +76,10 @@ var Profile = React.createClass({
       </div>
     )
   }
-});
+};
 
-module.exports = Profile;
+Profile.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
+
+export default Profile;
