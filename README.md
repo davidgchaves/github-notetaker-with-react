@@ -31,7 +31,7 @@ This step is not necessary to run the `webpack` command.
 You can always globally install it:
 
 ```
-$ node install -g webpack
+$ npm install -g webpack
 ```
 
 or explicitly use the locally installed version:
